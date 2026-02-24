@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listas M3U Actualizadas - Zona Apps Pro</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1e1e2f 0%, #0f0f1a 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #00ffcc;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .btn-copiar {
+            background: #00ffcc;
+            color: #1a1a1a;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            box-shadow: 0 5px 15px rgba(0, 255, 204, 0.3);
+        }
+
+        .btn-copiar:hover {
+            transform: scale(1.05);
+            background: #00e6b8;
+        }
+
+        .link-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            display: none; /* Se oculta al principio */
+            word-break: break-all;
+            border: 1px dashed #00ffcc;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        .alert-copiado {
+            color: #28a745;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Listas M3U Actualizadas</h1>
+        <p>Hacé clic abajo para copiar la lista premium del día.</p>
+        
+        <button class="btn-copiar" onclick="copiarLista()">📋 COPIAR LISTA</button>
+        
+        <div id="alert" class="alert-copiado">¡Copiado al portapapeles! ✅</div>
+
+        <div id="linkReveal" class="link-container">
+            <span style="color: #00ffcc; font-weight: bold;">Enlace de la lista:</span><br>
+            <span id="listaUrl">https://pastebin.com/raw/EjemploListaM3U</span>
+        </div>
+    </div>
+
+    <script>
+        function copiarLista() {
+            // El link que querés que se copie
+            const link = document.getElementById('listaUrl').innerText;
+            
+            // Copiar al portapapeles
+            navigator.clipboard.writeText(link).then(() => {
+                // Mostrar alerta de copiado
+                const alert = document.getElementById('alert');
+                alert.style.display = 'block';
+                
+                // Mostrar el contenedor del enlace
+                const reveal = document.getElementById('linkReveal');
+                reveal.style.display = 'block';
+
+                // Ocultar la alerta después de 2 segundos
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 2000);
+            });
+        }
+    </script>
+
+</body>
+</html>
